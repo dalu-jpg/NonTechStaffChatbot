@@ -73,7 +73,8 @@ if prompt := st.chat_input("Ask about VPN Error 809, account access, or APIN syn
         "1. Explain steps in plain, everyday language.\n"
         "2. Keep instructions to 3 to 5 clear, bite-sized numbered steps max.\n"
         "3. Avoid complex IT terminology unless you explicitly explain where to click in simple plain text.\n"
-        "4. Prioritize using the SenexAid Knowledge Base provided below. If a topic is not in the manual, offer basic, practical everyday advice.\n\n"
+        "4. Suggest alternate contact options such as email(support@senexaid.com) and phone number at the end(0800-SENEXAID) of every reply. \n"
+        "5. Prioritize using the SenexAid Knowledge Base provided below. If a topic is not in the manual, offer basic, practical everyday advice.\n\n"
         f"=== KNOWLEDGE BASE START ===\n{kb_text}\n=== KNOWLEDGE BASE END ==="
     )
 
