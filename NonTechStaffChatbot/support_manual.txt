@@ -1,0 +1,91 @@
+================================================================================
+SENEXAID FOUNDATION - ENTERPRISE IT TECHNICAL SUPPORT & FIELD MANUAL
+================================================================================
+Document Version: 2.4
+Target Audience: SenexAid Foundation Staff & Field Operators
+Support Contact: support@senexaid.org | Emergency Line: +234-800-SENEXAID
+
+--------------------------------------------------------------------------------
+SECTION 1: ACCOUNT ACCESS & IDENTITY MANAGEMENT
+--------------------------------------------------------------------------------
+
+1.1 Domain Account Lockout Policy
+- Accounts lock automatically after 5 consecutive failed login attempts.
+- Automatic lockout duration is 15 minutes.
+- Immediate Unlock: Staff can self-service unlock or reset passwords via the official portal at https://auth.senexaid.org/reset using registered Multi-Factor Authentication (MFA).
+
+1.2 Password Requirements & Reset Guidelines
+- Passwords must be at least 12 characters long and include: 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (!@#$%^&*).
+- Passwords expire every 90 days.
+- If locked out completely without access to MFA, email support@senexaid.org with your Staff ID and Supervisor approval.
+
+1.3 Multi-Factor Authentication (MFA) Setup
+- All staff must register Microsoft Authenticator or Google Authenticator.
+- SMS-based OTP is restricted to authorized field teams operating in low-bandwidth regions.
+- To re-bind MFA to a new phone, log into https://auth.senexaid.org/profile or contact the IT Helpdesk for an MFA temporary bypass code.
+
+
+--------------------------------------------------------------------------------
+SECTION 2: NETWORK & REMOTE ACCESS (VPN & CONNECTIVITY)
+--------------------------------------------------------------------------------
+
+2.1 SenexAid VPN Error 809 (L2TP/IPsec Connection Failed)
+- Cause: Local network firewall or ISP blocking UDP ports 500 and 4500, or Windows IPsec NAT-Traversal issues.
+- Step-by-Step Resolution:
+  1. Open Command Prompt (CMD) as Administrator.
+  2. Run command: netsh winsock reset
+  3. Registry fix for NAT-T: Ensure DWORD 'AssumeUDPEncapsulationContextOnSendRule' is set to 2 under 'HKLM\SYSTEM\CurrentControlSet\Services\PolicyAgent'.
+  4. Reboot your computer and attempt reconnecting to 'vpn.senexaid.org'.
+
+2.2 Bandwidth Limitation & Field Proxy Settings
+- Staff in remote field locations should enable 'Low Bandwidth Mode' in enterprise tools.
+- Proxy auto-configuration PAC file URL: http://proxy.senexaid.org/wpad.dat.
+
+
+--------------------------------------------------------------------------------
+SECTION 3: FIELD OPERATIONS & APIN DATA INTEGRATION
+--------------------------------------------------------------------------------
+
+3.1 APIN Data Synchronization Errors
+- Issue: Field devices fail to sync local survey and support data with central APIN servers.
+- Resolution Steps:
+  1. Verify active internet connection (minimum 256 kbps required).
+  2. Open SenexAid Sync Manager -> Settings -> Click 'Clear Cache'.
+  3. Verify API endpoint is configured as: https://apin-sync.senexaid.org/v2/data.
+  4. Perform a 'Force Delta Sync'. Do not interrupt power during sync.
+
+3.2 Field Device Encryption (BitLocker)
+- All laptops deployed for field research must have BitLocker enabled.
+- BitLocker recovery keys are automatically backed up to Azure Active Directory (Entra ID).
+- In case of a BitLocker prompt at boot, retrieve the 48-digit recovery key from https://myaccount.microsoft.com or contact IT.
+
+
+--------------------------------------------------------------------------------
+SECTION 4: HARDWARE & PRINTER CONFIGURATION
+--------------------------------------------------------------------------------
+
+4.1 Office Printer Connectivity
+- Main HQ Printer IP: 192.168.10.250 (Model: HP Enterprise LaserJet)
+- Installation: Navigate to Windows Settings -> Printers & Scanners -> Add Device -> Add manually via TCP/IP address '192.168.10.250'.
+
+4.2 Workstation Performance Troubleshooting
+- If experiencing system lag: Run Disk Cleanup, clear temp files ('%temp%'), and ensure at least 15% free disk space remains on C: drive.
+
+
+--------------------------------------------------------------------------------
+SECTION 5: HELPDESK OPERATING HOURS & ESCALATION PATHWAY
+--------------------------------------------------------------------------------
+
+5.1 Support Desk Hours
+- Standard Hours: Monday through Friday, 8:00 AM – 6:00 PM West Africa Time (WAT).
+- Emergency On-Call Support: 24/7 coverage for critical field server outages and security breaches.
+
+5.2 Ticket Severity & Response Time SLA
+- Severity 1 (Critical): System-wide outage or field database unreachable -> Response within 30 minutes.
+- Severity 2 (High): Individual user unable to work (Locked account, VPN failure) -> Response within 2 hours.
+- Severity 3 (Normal): General inquiries, software installation requests -> Response within 24 hours.
+
+5.3 Escalation Contact Directory
+- Tier 1 Helpdesk: support@senexaid.org
+- Network & Infrastructure Lead: netops@senexaid.org
+- Project Lead / Presenter: Zulu Onwuekweikpe (zulu.onwuekweikpe@senexaid.org)
